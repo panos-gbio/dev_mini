@@ -23,7 +23,9 @@ version = "0.1.1"
 test = ["pytest", "pytest-cov"]
 release = ["build", "twine"] # need them for releas
 static-code-qa = ["pre-commit"] # to run the pre-commit hooks, run `pre-commit run --all-files`
-dev = ["python-course-package[test,release,static-code-qa]"]
+dev = [
+    "my-package-gpanos[test,static-code-qa,release]"
+]
 
 # docs: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 [tool.setuptools.dynamic]
