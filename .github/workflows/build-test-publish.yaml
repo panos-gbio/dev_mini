@@ -6,6 +6,7 @@ on:
     push:
         branches:
             - main # main should get a push once a pull request is merged to the /staging branch. Post-merge
+    workflow_dispatch: # allows us to manually trigger the workflow from the Actions tab in GitHub. This is useful for testing and debugging the workflow.
 
 jobs:
   build-test-publish:
@@ -21,4 +22,27 @@ jobs:
           /bin/bash run.sh build
           /bin/bash run.sh publish:test
         env:
-          TEST_PYPI_API_TOKEN: ${{secrets.}}# we will use a github expression
+          TEST_PYPI_TOKEN: ${{secrets.}}# we will use a github expression
+
+  
+  # https://docs.github.com/en/actions/learn-github-actions/contexts#example-printing-context-information-to-the-log
+  dump-contexts-to-log: # this is a job that will dump the contexts to the log. This is useful for debugging and understanding what contexts are available in the workflow.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
+      - name: Dump secrets
+        run: echo '${{ toJSON(secrets) }}'
+      - name: Dump vars
+        run: echo '${{ toJSON(vars) }}'
