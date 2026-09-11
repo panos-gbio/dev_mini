@@ -17,13 +17,13 @@ license = { text = "MIT" }
 classifiers = ["Programming Language :: Python :: 3"]
 dependencies = ["numpy", 'importlib-metadata; python_version<"3.8"']
 # dynamic = ["version"]
-version = "0.1.0"
+version = "0.1.1"
 
-# [project.optional-dependencies]
-# test = ["pytest", "pytest-cov"]
-# release = ["build", "twine"]
-# static-code-qa = ["pre-commit"]
-# dev = ["python-course-package[test,release,static-code-qa]"]
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov"]
+release = ["build", "twine"] # need them for releas
+static-code-qa = ["pre-commit"] # to run the pre-commit hooks, run `pre-commit run --all-files`
+dev = ["python-course-package[test,release,static-code-qa]"]
 
 # docs: https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html#dynamic-metadata
 [tool.setuptools.dynamic]
@@ -38,7 +38,7 @@ exclude = ["venv"]
 
 [tool.flake8]
 docstring-convention = "all"
-ignore = ["D107", "D212", "E501", "W503", "W605", "D203", "D100"]
+ignore = ["D107", "D212", "E501", "W503", "W605", "D203", "D100", "E501"]
 exclude = ["venv"]
 max-line-length = 119
 
@@ -60,6 +60,7 @@ disable = [
     "import-error",
     "too-few-public-methods",
     "redefined-outer-name",
+    "missing-module-docstring",
 ]
 
 [tool.ruff]
@@ -67,7 +68,7 @@ disable = [
 select = ["E", "F", "B", "ERA"]
 
 # Never enforce `E501` (line length violations).
-ignore = ["E501", "F401"]
+ignore = ["E501", "F401", "ERA001"]
 
 # Avoid trying to fix flake8-bugbear (`B`) violations.
 unfixable = ["B"]

@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 from typing import List
 
-THIS_DIR = Path(__file__).parent # rhe parent dir of the current script file
+THIS_DIR = Path(__file__).parent  # rhe parent dir of the current script file
 CITIES_JSON_FPATH = THIS_DIR / "cities.json"
 
 
@@ -27,5 +27,5 @@ def slow_add(a: int, b: int) -> int:
 
 
 if __name__ == "__main__":
-    res = is_city_capitol_of_state(city_name = "Montgomery", state = "Alabama")
+    res = is_city_capitol_of_state(city_name="Montgomery", state="Alabama")
     print(f"Montgomery is the capitol of Alabama: {res}")

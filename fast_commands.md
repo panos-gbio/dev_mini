@@ -15,7 +15,7 @@ The pip looks in the current directory a pyproject.toml file and installs the pa
 - This allows you to make changes to your package and have them reflected immediately without needing to reinstall.
 - I can import any module from my package in any python script or notebook and it will use the latest version of the code.
 - File hierarchy is not affected how to import the modules since they are in the lib folder of the package. Sys can find them.
-- When I make a package I use `absolute import statements` since `sys.path()` is used to find the modules. 
+- When I make a package I use `absolute import statements` since `sys.path()` is used to find the modules.
 - From where the package starts. From `package.subpackage.module` or `package.module` or `package.subpackage.subsubpackage.module` etc.. I do not use relative imports like `from .module import CONSTANT` or `from ..subpackage.module import CONSTANT` since they are not needed and can cause issues if the package is used in different contexts.
 - The `build` cli tool is used to parse the `pyproject.toml` file and build the package. Nowadays we use `wheel` format for packaging pre-compiled binaries.
 - The sdist will be usefull for end users that want to OS different than mine. The wheel format is faster to install since it is pre-compiled binaries.
@@ -23,7 +23,7 @@ The pip looks in the current directory a pyproject.toml file and installs the pa
 - For dependency check, i can use the package `pipdeptree` to see the dependency tree of the installed packages. It can be used to check for conflicts or to see which packages are installed as dependencies of other packages.
 
 ```bash
-# the old approach to build the bin files 
+# the old approach to build the bin files
 python setup.py build sdist
 
 # and i will install the package in my virtual environment
@@ -47,7 +47,7 @@ python -m pip show my_package
 python -m build --sdist --wheel # build both sdist and wheel source distributions
 python -m pip install -e . # install the package in development mode
 python -m pip install . # installs local package normally with its dependencies
-python -m pip uninstall my-package 
+python -m pip uninstall my-package
 
 # plot dependency tree of installed packages
 pipdeptree -p my-package --graph-output png > my-package-dependencies.png
@@ -59,6 +59,7 @@ I can also run my tools using the config file in `.toml`, except .flake8 which h
 ```bash
 ruff check . --config ./pyproject.toml
 
+# remember to stage and commit changes.
 $ pre-commit run --all-files # run all pre-commit hooks on all files
 ```
 
@@ -78,7 +79,7 @@ find /c/Users/gpano/miniconda3/bioenv -type f -name "*.json"
 
 find /c/Users/gpano/miniconda3/envs/bioenv/Lib/site-packages/my_package -type f -name "*.json"
 
-$ conda list | grep my-package # only works with "-" in the package name instead of "_" in the package name. This is a bug in conda, also this istalled by pip and better deleted by pip. 
+$ conda list | grep my-package # only works with "-" in the package name instead of "_" in the package name. This is a bug in conda, also this istalled by pip and better deleted by pip.
 my-package                       0.1.0                  pypi_0                   pypi
 
 
