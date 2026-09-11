@@ -10,9 +10,8 @@ file_path = Path(__file__)
 
 if not file_path.exists():
     raise FileNotFoundError("File not found")
-else:
-    print(f"File found: {file_path}")
-    print(f"Absolute path: {file_path.resolve()}")
+print(f"File found: {file_path}")
+print(f"Absolute path: {file_path.resolve()}")
 
 CONSTANT2 = "hi2"
 

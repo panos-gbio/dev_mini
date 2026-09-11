@@ -1,1 +1,0 @@
-VAR: str = "module1"
